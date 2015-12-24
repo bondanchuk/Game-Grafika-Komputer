@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="695" pageHeight="842" columnWidth="655" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="42551f0a-3031-4cb9-baaa-9fd37343f4df">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="tglAwal" class="java.lang.String"/>
+	<parameter name="tglAkhir" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select pembelian.noFakturBeli, pembelian.tglTransaksi , supplier.namaSupplier, obat.namaObat, pembelian.harga, pembelian.qty from pembelian join supplier on pembelian.kodeSupplier=supplier.kodeSupplier join obat on pembelian.kodeObat=obat.kodeObat where pembelian.tglTransaksi between $P{tglAwal} and $P{tglAkhir}]]>
+	</queryString>
+	<field name="noFakturBeli" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tglTransaksi" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="namaSupplier" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="namaObat" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="harga" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="qty" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="total" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{harga}*$F{qty}]]></variableExpression>
+	</variable>
+	<variable name="grand" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$V{total}]]></variableExpression>
+	</variable>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="72">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="-20" width="675" height="92" backcolor="#006699" uuid="2ef7d24b-7dd6-43a4-bb5e-012764f7483f"/>
+				<staticText>
+					<reportElement x="20" y="20" width="321" height="43" forecolor="#FFFFFF" uuid="097cc9e3-27ad-45ac-b3c3-3739fa52a306"/>
+					<textElement>
+						<font fontName="Arial" size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Laporan Pembelian]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="20" y="63" width="102" height="20" forecolor="#FFFFFF" uuid="7cb7dbeb-b4ab-47a9-a48a-5155a8051d15"/>
+					<textElement textAlignment="Right">
+						<font size="14" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Apotek Bondan]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="448" y="72" width="41" height="20" forecolor="#FFFFFF" uuid="b85d2439-e6c3-40b0-8950-308f0ce16dc6"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial"/>
+					</textElement>
+					<text><![CDATA[Periode : ]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="489" y="72" width="64" height="20" forecolor="#FFFFFF" uuid="4f674758-4d86-4ea9-996f-3128059af3c1"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$P{tglAwal}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="575" y="72" width="100" height="20" forecolor="#FFFFFF" uuid="95dd14eb-217b-4d0a-aa6c-e2ba5fdbecb4"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$P{tglAkhir}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="553" y="72" width="22" height="20" forecolor="#FFFFFF" uuid="2159983a-8cf8-4aa6-9013-057c66cf581f"/>
+					<textElement verticalAlignment="Middle"/>
+					<text><![CDATA[s/d]]></text>
+				</staticText>
+				<image>
+					<reportElement x="341" y="20" width="64" height="43" uuid="e805051b-ddf9-47d6-91f5-c35c44dd1893"/>
+					<imageExpression><![CDATA["C:\\Users\\HP\\Pictures\\bowl_of_hygeia_white_blue_button.png"]]></imageExpression>
+				</image>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="13"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="21">
+			<line>
+				<reportElement x="-20" y="20" width="675" height="1" forecolor="#666666" uuid="e7bac3a4-df11-480d-a554-8d2d5d1bb2cf"/>
+			</line>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="92" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="ee4e0467-e76f-4f59-ac10-fcd143fa906a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[No Faktur]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="92" y="0" width="110" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="7d71e6ff-8b46-4329-acac-d650f7deee18"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tanggal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="202" y="0" width="92" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="bba884a6-05f9-4184-813b-a2c8a009f97a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Supplier]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="386" y="0" width="99" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="ce6d0385-ced6-4210-b4f4-987f8ae6be0b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Harga]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="484" y="0" width="56" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="442c8389-4ef0-4de7-b79e-77fdbb4d0cd1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Jumlah]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="540" y="0" width="115" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="27090b8b-9542-4ef3-9610-2e4603d98633"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="294" y="0" width="92" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="b13bc814-9cb8-480b-a7af-7a63b59d7a81"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Obat]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="655" height="1" uuid="be936540-515d-4f5b-a94e-741798cc3dce"/>
+			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="0" y="0" width="92" height="20" uuid="b8dc4642-f637-4f48-a22d-da44269357c0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{noFakturBeli}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="92" y="0" width="110" height="20" uuid="9440344e-e17f-4b39-a4c5-b91a6c05ff6d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tglTransaksi}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="202" y="0" width="92" height="20" uuid="0142b1dd-e0b5-41a5-959e-6b2e4682b30e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{namaSupplier}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="293" y="0" width="92" height="20" uuid="d5203c66-dfcb-4221-95e9-4772d277806a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{namaObat}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="385" y="0" width="99" height="20" uuid="bd1916f5-24ea-4ece-afeb-4fbe6c4d49d5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{harga}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="484" y="0" width="56" height="20" uuid="d1a6dad2-6805-463e-8eb3-8eadba9ea3e1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{qty}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="540" y="0" width="115" height="20" uuid="95b73287-2546-4ea5-8483-e567e51a2c49"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{total}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="31">
+			<textField>
+				<reportElement x="540" y="0" width="115" height="31" uuid="e307b894-9e15-45c6-8808-4cd1f8605a47"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="18" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{grand}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="439" y="0" width="100" height="31" uuid="5b410407-6447-4c4d-97c9-5e06a3c86709"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Grand Total : ]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="17">
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="615" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="aaeff8b2-36e2-49a0-9dc5-b66d1d8a12a2"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="0" y="4" width="615" height="13" backcolor="#E6E6E6" uuid="a7c12dd3-bb9a-47d2-aa5e-76c1088f2b2d"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Hal "+$V{PAGE_NUMBER}+" dari"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="0" y="4" width="49" height="13" uuid="a07884dd-daac-45de-b567-437eee21c2aa"/>
+				<text><![CDATA[Tanggal : ]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement mode="Transparent" x="49" y="4" width="100" height="13" uuid="d62c1c8d-4a6b-4c83-bdcb-36751c333193"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>
